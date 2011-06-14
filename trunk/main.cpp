@@ -279,6 +279,16 @@ void tocarBib(BIBLIOTECA* bib){
 }
 
 void salvarBib(BIBLIOTECA* bib){
+    if(bib->getMinhaMusica()->getTamanhoAtual()==0){
+        cout << "Musica sem nota" << endl;
+        getch();
+        return;
+    }
+    string novoNome;
+    cout << "Digite nome para a musica: ";
+    cin >> novoNome;
+    bib->normalizaNome(novoNome);
+    bib->getMinhaMusica()->setNome(novoNome);
     bib->salvar();
 }
 

@@ -22,10 +22,10 @@ private:
     string bibdir;
     string bibfile;
     LISTA<string> bibfiles;
-    string normalizaNome(string);
     void getMusicasR(NO2<MUSICA*>*, LISTA<string>*);
     bool estaNaBibliotecaR(string, NO2<MUSICA*>*);
 public:
+    string normalizaNome(string);
     BIBLIOTECA(BANCODENOTAS*, BEEP*);
     BANCODENOTAS* getBanco();
     BEEP* getBeep();
