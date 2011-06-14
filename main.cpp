@@ -137,11 +137,11 @@ int telaComando(BIBLIOTECA* bib){
         switch(c = getch()){
             case 'P':
                 escolha++;
-                if(escolha>escolhaMax) escolha = escolhaMax;
+                if(escolha>escolhaMax) escolha = escolhaMin;
                 break;
             case 'H':
                 escolha--;
-                if(escolha<escolhaMin) escolha = escolhaMin;
+                if(escolha<escolhaMin) escolha = escolhaMax;
                 break;
             case 27:
                 return SAIDA;
@@ -268,7 +268,7 @@ void tocarBib(BIBLIOTECA* bib){
     else{
         cout << "Musica atual : " << minhaMusica->getNome() << endl;
         cout << "Tamanho      : " << minhaMusica->getTamanhoAtual() << " notas" << endl;
-        minhaMusica->tocar();
+        minhaMusica->tocar(true);
         cout << endl << "Fim da musica. ";
     }
 

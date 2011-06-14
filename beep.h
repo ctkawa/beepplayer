@@ -17,8 +17,9 @@ private:
 public:
     BEEP(BANCODENOTAS*);
     void tocar();
+    void tocar(NOTA*, bool print);
     void tocar(NOTA*);
-    void tocar2(NOTA);
+    //void tocar2(NOTA);
 };
 
 #endif

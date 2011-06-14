@@ -38,6 +38,15 @@ void MUSICA::tocar(){
     }
 }
 
+void MUSICA::tocar(bool print){
+    NO2<NOTA*>* ptr;
+    ptr = getPtrHeader()->getDir();
+    while(ptr != getPtrHeader()){
+        beep->tocar(ptr->getInfo(), print);
+        ptr = ptr->getDir();
+    }
+}
+
 bool MUSICA::operator==(MUSICA const &dir){
     return (nome==dir.nome);
 };/*
