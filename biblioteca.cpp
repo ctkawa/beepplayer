@@ -123,12 +123,12 @@ bool BIBLIOTECA::salvar(){
     // Verificando se o nome da música já existe
     string novoNome;
     while(estaNaArvore(minhaMusica)){
-        cout << "Este nome de musica ja existe." << endl;
+        cout << "Este nome de musica ja existe: " << minhaMusica->getNome() << endl;
         cout << "Digite outro nome: ";
         cin >> novoNome;
         normalizaNome(novoNome);
-        if(novoNome == "")
-            return false;
+//        if(novoNome == "")
+//            return false;
         minhaMusica->setNome(novoNome);
     }
 
