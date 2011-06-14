@@ -464,20 +464,6 @@ int telaPlayer(BIBLIOTECA* bib){
         ptrTocar = musicas->getPtrHeader()->getDir();
     }
 
-//     system("CLS");
-//        cout << "BEEP PLAYER" << endl;
-//        if(musicas->vazia()){
-//            cout << "A biblioteca está vazia." << endl;
-//        } else {
-//            ptrMus = musicas->getPtrHeader()->getDir();
-//            while(ptrMus != musicas->getPtrHeader()){
-//                if(ptrMus == ptrTocar) cout << ">> ";
-//                else cout << "   ";
-//                cout << ptrMus->getInfo() << endl;
-//                ptrMus = ptrMus->getDir();
-//            }
-//        }
-
     do{
         system("CLS");
         cout << "BEEP PLAYER" << "\t [q] para sair." << endl;
@@ -775,9 +761,11 @@ void teste(){
     NOTA n(banco);
     NOTA* pn;
 
+
     bool okn, okt; //ok nota tempo
     cout << "Modulo de teste" << endl;
 
+/*
     Sleep(500);
     cout << "Teste de NOTA" << endl;
     cout << "\t" << n.getNome() << " " << n.getTempo() << endl;
@@ -929,9 +917,16 @@ void teste(){
     minhaMus.tocar();
 
     Sleep(500);
+
+    */
+
     cout << "Teste de BIBLIOTECA" << endl;
+
+    cout << "ops" << endl;
     BIBLIOTECA bib(banco, &beep);
+    cout << "ops" << endl;
     bib.tocar("Teste", okn);
+    cout << "ops" << endl;
 
     delete banco;
     Sleep(1000);
