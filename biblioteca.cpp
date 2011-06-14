@@ -255,7 +255,7 @@ bool BIBLIOTECA::desejaSalvar(){
     string entrada;
     if(minhaMusica != NULL && minhaMusica->getTamanhoAtual()!=0){
         do{
-            cout << "Existe uma musica aberta. Deseja salvar? (Sim/Nao/Cancelar): ";
+            cout << "Existe uma musica aberta. Deseja salvar? ([S]im/[N]ao/[C]ancelar): ";
             cin >> entrada;
         }while(entrada!="S" && entrada!="N" && entrada!="C");
         if(entrada == "C"){
