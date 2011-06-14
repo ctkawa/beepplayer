@@ -3,6 +3,7 @@
 BIBLIOTECA::BIBLIOTECA(BANCODENOTAS* ba, BEEP* be) :
     ARVORE<MUSICA*>(){
 
+    minhaMusica = NULL;
     banco = ba;
     beep = be;
     bibdir = "bib/";
