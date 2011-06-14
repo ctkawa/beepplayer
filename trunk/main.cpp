@@ -134,6 +134,8 @@ int telaComando(BIBLIOTECA* bib){
         else cout << "   ";
         cout << "Sair" << endl;
 
+        cout << "\n\n\n";
+
         switch(c = getch()){
             case 'P':
                 escolha++;
@@ -402,9 +404,9 @@ int telaPlayer(BIBLIOTECA* bib){
                         getch();
                         break;
                     }
-                    cout << endl << endl << "\tMusica atual :" << bib->getMusica(ptrTocar->getInfo(), ok)->getNome() << endl;
+                    cout << endl << endl << "\tMusica atual : " << bib->getMusica(ptrTocar->getInfo(), ok)->getNome() << endl;
                     if(ok){
-                        cout << "\tTamanho     :" << bib->getMusica(ptrTocar->getInfo(), ok)->getTamanhoAtual() << endl << endl;
+                        cout << "\tTamanho     : " << bib->getMusica(ptrTocar->getInfo(), ok)->getTamanhoAtual() << endl << endl;
                         if(ok){
                             bib->tocar(ptrTocar->getInfo(), ok);
                             if(!ok)
@@ -456,7 +458,7 @@ void piano(BIBLIOTECA* bib){
     bib->setMinhaMusica(minhaMusica);
 
     system("CLS");
-    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"SHIFT+L para limpar a tela, SHIFT+N para ver notas da musica" << endl << endl;
+    cout << "PIANO" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"SHIFT+L para limpar a tela, SHIFT+N para ver notas da musica" << endl << endl;
 
     char key = ' ';
     int i;
@@ -475,7 +477,10 @@ void piano(BIBLIOTECA* bib){
                     cout << " - - - - - - - - - - - - -" << endl;
                     ptrN2 = bib->getMinhaMusica()->getPtrHeader()->getDir();
                     while(ptrN2 != bib->getMinhaMusica()->getPtrHeader()){
-                        cout << ptrN2->getInfo()->getNome() << ", " << ptrN2->getInfo()->getTempo()<<endl;
+                        for(int i=0; i<banco->getPosicaoNota(*ptrN2->getInfo()); i++) cout << "   ";
+                        cout << ptrN2->getInfo()->getNome() << endl;
+                        for(int i=0; i<banco->getPosicaoNota(*ptrN2->getInfo()); i++) cout << "   ";
+                        cout << ptrN2->getInfo()->getTempo()<< endl;
                         ptrN2 = ptrN2->getDir();
                     }
                     cout << " - - - - - - - - - - - - -" << endl;
@@ -631,7 +636,12 @@ void piano(BIBLIOTECA* bib){
                 if(!bib->getMinhaMusica()->insereAEsquerda(banco->getNota(minhaNota), *bib->getMinhaMusica()->getPtrHeader()))
                    cout << "insert Error!" << endl;
                 bep->tocar(&minhaNota);
-                cout << " \t"  << minhaNota.getNome() << ", " << minhaNota.getTempo();
+                int i;
+                for(i=0; i<banco->getPosicaoNota(minhaNota); i++) cout << "   ";
+                cout << minhaNota.getNome() << endl;
+                for(i=0; i<banco->getPosicaoNota(minhaNota); i++) cout << "   ";
+                cout << minhaNota.getTempo()<< endl;
+                //cout << " \t"  << minhaNota.getNome() << ", " << minhaNota.getTempo();
             } else if(key!=13&&key!=27&&key!=8&&key!=76&&key!=78)
                 cout << "Nao reconhecido";
             cout << endl;
