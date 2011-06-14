@@ -10,7 +10,7 @@ void BEEP::som(){   // interpreta e toca
     int freq = banco->getFrequencia(nota);
     int tempo = banco->getTempo(nota);
 
-    cout << "\t" << nota->getNome() << " " << nota->getTempo() << endl;
+    //cout << "\t" << nota->getNome() << " " << nota->getTempo() << endl;
     Beep(freq,tempo);                   // toca efetivamente, funcao do sistema
 }
 

@@ -589,13 +589,27 @@ void piano(BIBLIOTECA* bib){
             i =key;
             cout << key << " " << (int)key;
             switch(key){
-                case(32):
+
+                case(8):
+                    if(bib->getMinhaMusica()->getPtrHeader()->getDir() == bib->getMinhaMusica()->getPtrHeader()){
+                        cout << "Musica vazia!" << endl;
+                        break;
+                    }
+                    cout << "Removendo ultima nota. (";
+                    cout << bib->getMinhaMusica()->getPtrHeader()->getEsq()->getInfo()->getNome();
+                    cout << "," << bib->getMinhaMusica()->getPtrHeader()->getEsq()->getInfo()->getTempo() << ")" << endl;
+                    bib->getMinhaMusica()->retirar(bib->getMinhaMusica()->getPtrHeader()->getEsq(), okn);
+                    if(!okn)
+                        cout << "Erro ao retirar!" << endl;
+                    okt = false;
+                    break;
+                case(32):   //espco
                     minhaNota.setNota("pausa",0.5,okn,okt);
                     break;
-                case(13):
+                case(13):   //enter
                     okt = false;
                     okn = false;
-                    cout << bib->getMinhaMusica()->getNome() << ", tamanho: " << bib->getMinhaMusica()->getTamanhoAtual() << endl;
+                    cout << bib->getMinhaMusica()->getNome() << ", tamanho: " << bib->getMinhaMusica()->getTamanhoAtual();
                     bib->getMinhaMusica()->tocar();
                     break;
 
@@ -623,6 +637,10 @@ void piano(BIBLIOTECA* bib){
                 case(47):
                     minhaNota.setNota("1do",0.25,okn,okt);
                     break;
+                case(98):
+                    minhaNota.setNota("pausa",0.25,okn,okt);
+                    break;
+
                 case(97):
                     minhaNota.setNota("0do",0.5,okn,okt);
                     break;
@@ -646,6 +664,9 @@ void piano(BIBLIOTECA* bib){
                     break;
                 case(59):
                     minhaNota.setNota("1do",0.5,okn,okt);
+                    break;
+                case(103):
+                    minhaNota.setNota("pausa",0.5,okn,okt);
                     break;
 
                 case(113):
@@ -672,6 +693,10 @@ void piano(BIBLIOTECA* bib){
                 case(112):
                     minhaNota.setNota("1do",1,okn,okt);
                     break;
+                case(116):
+                    minhaNota.setNota("pausa",1,okn,okt);
+                    break;
+
                 case(49):
                     minhaNota.setNota("0do",2,okn,okt);
                     break;
@@ -696,6 +721,9 @@ void piano(BIBLIOTECA* bib){
                 case(48):
                     minhaNota.setNota("1do",2,okn,okt);
                     break;
+                case(53):
+                    minhaNota.setNota("pausa",2,okn,okt);
+                    break;
 
                 default:
                     okt = false;
@@ -707,7 +735,7 @@ void piano(BIBLIOTECA* bib){
                    cout << "insert Error!" << endl;
                 bep->tocar(&minhaNota);
                 cout << " \t"  << minhaNota.getNome() << ", " << minhaNota.getTempo();
-            } else if(key!=13&&key!=27)
+            } else if(key!=13&&key!=27&&key!=8)
                 cout << "Nao reconhecido";
             cout << endl;
         }
