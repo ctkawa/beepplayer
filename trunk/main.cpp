@@ -43,9 +43,9 @@ int telaEntrada(){
     cout << "\t\tBeep Player" << endl;
     cout << "\n\n\n";
     cout << "Cleber Takahito Kawamorita" << endl;
-    cout << "Felipe" << endl;
+    cout << "Felipe Augusto de Salles Pupo" << endl;
     cout << "Joao C. S. de Oliveira" << endl;
-    cout << "Willian" << endl;
+    cout << "Willian Lira Cardoso" << endl;
     cout << "\n\n\n";
     cout << "[Tecle ENTER para continuar]" << endl;
     getche();
