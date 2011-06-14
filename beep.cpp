@@ -20,7 +20,7 @@ void BEEP::tocar(){
 
 void BEEP::tocar(NOTA* n, bool print){
     nota = n;
-    cout << nota->getNome() << " " << nota->getTempo() << endl;
+    if (print) cout << nota->getNome() << " " << nota->getTempo() << endl;
     som();
 }
 
