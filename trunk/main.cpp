@@ -297,7 +297,7 @@ void nova(MUSICA &mus, bool &ok){
         mus.retirar(mus.getPtrHeader()->getDir(), ok);
     }
     if(ok)
-        mus.setNome("NovaMusica");
+        mus.setNome("Sem Nome");
 }
 
 void salvar(string nomeP, MUSICA &mus){
