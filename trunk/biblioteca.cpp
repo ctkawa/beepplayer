@@ -61,7 +61,7 @@ void BIBLIOTECA::moveMinhaMusicaPBib(){
         minhaMusica->setNome(normalizaNome(minhaMusica->getNome()));
         while( estaNaArvore(minhaMusica) ){
             string novoNome;
-            cout << "Este nome ja existe na biblioteca." << endl;
+            cout << "Este nome ja existe na biblioteca: " << minhaMusica->getNome() << endl;
             cout << "Digite outro nome: ";
             cin >> novoNome;
             minhaMusica->setNome(normalizaNome(novoNome));
@@ -112,7 +112,7 @@ bool BIBLIOTECA::salvar(){
     cin >> nomeP;
     nomeP = normalizaNome(nomeP);
     while(bibfiles.estaNaLista(nomeP)){
-        cout << "Este arquivo ja existe." << endl;
+        cout << "Este arquivo ja existe: " << nomeP << endl;
         cout << "Digite outro nome de arquivo: ";
         cin >> nomeP;
         nomeP = normalizaNome(nomeP);
@@ -160,7 +160,7 @@ bool BIBLIOTECA::salvar(){
     //cout << "insert" << endl;
     insere(minhaMusica);
     minhaMusica = NULL;
-
+    //minhaMusica = new MUSICA;
     delete arqNome;
 
     return true;
@@ -332,4 +332,16 @@ void BIBLIOTECA::imprimeAllR(NO2<MUSICA*> *no){
         imprimeAllR(no->getDir());
     } else
         return;
+}
+
+bool BIBLIOTECA::estaNaBiblioteca(string s){
+    return estaNaBibliotecaR(s, raiz);
+}
+bool BIBLIOTECA::estaNaBibliotecaR(string s, NO2<MUSICA*>* no){
+    if(no==NULL)
+        return false;
+    else if(no->getInfo()->getNome()==s)
+        return true;
+    else
+        return (estaNaBibliotecaR(s,no->getDir()) || estaNaBibliotecaR(s,no->getEsq()));
 }
