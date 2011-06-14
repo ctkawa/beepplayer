@@ -23,6 +23,7 @@ public:
     void setNome(string);
 
     void tocar();
+    void tocar(bool print); //imprimir notas tocadas
 
     bool operator==(MUSICA const &dir);
 //    bool operator<(MUSICA const &dir);
