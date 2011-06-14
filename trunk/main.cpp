@@ -144,6 +144,9 @@ int telaComando(BIBLIOTECA* bib){
                 escolha--;
                 if(escolha<escolhaMin) escolha = escolhaMin;
                 break;
+            case 27:
+                return SAIDA;
+                break;
             case 13:
                 switch(escolha){
                     case 0: return PLAYER;
