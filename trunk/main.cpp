@@ -88,7 +88,7 @@ int telaComando(BIBLIOTECA* bib){
             cout << "Sem música aberta"<<endl;
         cout << "\nEntre com comando" << endl <<" {sair; tocar; teste; abrir; salvar; nova; piano; sobre}" << endl << "{tocarbib; abrirbib; salvarbib; gravarbib; player}" << endl << ">> ";
         cin >> cmd;
-        if(cmd == "sair" || cmd == "exit" || cmd == "fechar")
+        if(cmd == "sair" || cmd == "exit" || cmd == "fechar" || cmd == "q" || cmd == "quit")
             return SAIDA;
         else if(cmd == "tocar"){
             bool ok;
@@ -366,7 +366,7 @@ int telaPlayer(BIBLIOTECA* bib){
             }
         }
 
-        if(kbhit){
+        //if(kbhit){
            switch(c = getch()){
                 case 'P':
                     if(ptrTocar != NULL && ptrTocar->getDir() != musicas->getPtrHeader())
@@ -402,7 +402,8 @@ int telaPlayer(BIBLIOTECA* bib){
                     getch();
                     break;
             }
-        }
+        //}
+        Sleep(1);
     }while(!sair);
 
     return COMANDO;

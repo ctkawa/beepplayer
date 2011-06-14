@@ -298,20 +298,20 @@ void BIBLIOTECA::busca(string s, NO2<MUSICA*>* no, NO2<MUSICA*>* &resultado, boo
             resultado = no;
             encontrado = true;
             return;
-        } else if(no->getInfo()->getNome() > s){
+        } else if(no->getInfo()->getNome() < s){
             busca(s, no->getEsq(), resultado, encontrado);
                                                                         if(!encontrado){
                                                                             busca(s, no->getDir(), resultado, encontrado);
-                                                                            if(encontrado)
-                                                                                cout << "WRONG SEARCH 1 : "<<no->getInfo()->getNome() <<" not < "<< s<<endl;
-                                                                        }
+//                                                                            if(encontrado)
+//                                                                                cout << "WRONG SEARCH 1 : "<<no->getInfo()->getNome() <<" not < "<< s<<endl;
+                                                                        } //else { cout<<no->getInfo()->getNome() <<"<"<< s<<endl;}
         } else {
             busca(s, no->getDir(), resultado, encontrado);
                                                                         if(!encontrado){
                                                                             busca(s, no->getEsq(), resultado, encontrado);
-                                                                            if(encontrado)
-                                                                                cout << "WRONG SEARCH 2 : "<<no->getInfo()->getNome() <<" not >= "<< s<<endl;
-                                                                        }
+//                                                                            if(encontrado)
+//                                                                                cout << "WRONG SEARCH 2 : "<<no->getInfo()->getNome() <<" not >= "<< s<<endl;
+                                                                        } //else { cout<<no->getInfo()->getNome() <<">="<< s<<endl;}
         }
     }
 }
