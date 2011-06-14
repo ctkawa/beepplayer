@@ -217,7 +217,7 @@ bool BIBLIOTECA::abrir(string nomeP){
     int conf = GetFileAttributes(TEXT(arqNome));
 
     if(conf == -1 || conf == FILE_ATTRIBUTE_DIRECTORY){
-        cout << "Arquivo quase nao existe " << arqNome <<endl;
+        cout << "Arquivo nao existe " << arqNome <<endl;
         return false;
     }
 
@@ -273,8 +273,12 @@ bool BIBLIOTECA::abrir(string nomeP){
     return true;
 }
 
-bool BIBLIOTECA::nova(){
-
+bool BIBLIOTECA::novaMusica(){
+    if(minhaMusica != NULL){
+        delete minhaMusica;
+        minhaMusica = NULL;
+    }
+    minhaMusica = new MUSICA(beep);
 }
 
 bool BIBLIOTECA::desejaSalvar(){

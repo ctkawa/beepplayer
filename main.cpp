@@ -118,7 +118,7 @@ int telaComando(BIBLIOTECA* bib){
 
         if(escolha == 6) cout << ">> ";
         else cout << "   ";
-        cout << "Gravar nova musica" << endl;
+        cout << "Gravar musica" << endl;
 
         cout << endl;
 
@@ -151,13 +151,14 @@ int telaComando(BIBLIOTECA* bib){
                     case 0: return PLAYER;
                     case 1: return PIANO;
                     case 2: tocarBib(bib); break;
-                    case 3: // nova
+                    case 3: bib->novaMusica(); break;
+/*                    case 3: // nova
                         nova(*bib->getMinhaMusica(), ok);
                         if(!ok){
                             cout << "!\tErro ao criar nova musica" << endl;
                             Sleep(1000);
                         }
-                        break;
+                        break; */
                     case 4: abrirBib(bib); break;
                     case 5: salvarBib(bib); break;
                     case 6: gravarBib(bib); break;
@@ -385,16 +386,6 @@ void abrirBib(BIBLIOTECA* bib){
 void gravarBib(BIBLIOTECA* bib){
     BANCODENOTAS* banco = bib->getBanco();
     MUSICA* minhaMusica = bib->getMinhaMusica();
-
-    if(minhaMusica != NULL){
-        if(!bib->desejaSalvar()){
-            return;
-        }
-    } else {
-        delete minhaMusica;
-        minhaMusica = new MUSICA(bib->getBeep(), "Minha Gravacao");
-        bib->setMinhaMusica(minhaMusica);
-    }
 
     system("CLS");
     cout << "Gravacao" << endl << "entre com nota e tempo separado com virgula (1do,1; 0re,0.25 ...) uma nota por linha." << endl << "fim para sair"<< endl << endl;
@@ -762,7 +753,7 @@ void teste(){
     bool okn, okt; //ok nota tempo
     cout << "Modulo de teste" << endl;
 
-/*
+
     Sleep(500);
     cout << "Teste de NOTA" << endl;
     cout << "\t" << n.getNome() << " " << n.getTempo() << endl;
@@ -915,15 +906,11 @@ void teste(){
 
     Sleep(500);
 
-    */
 
     cout << "Teste de BIBLIOTECA" << endl;
 
-    cout << "ops" << endl;
     BIBLIOTECA bib(banco, &beep);
-    cout << "ops" << endl;
     bib.tocar("Teste", okn);
-    cout << "ops" << endl;
 
     delete banco;
     Sleep(1000);
