@@ -316,19 +316,16 @@ void salvar(string nomeP, MUSICA &mus){
 
 void abrirBib(BIBLIOTECA* bib){
     string nomeP;
-
-    //if(bib->desejaSalvar());
     MUSICA* minhaMusica = bib->getMinhaMusica();
-    if( minhaMusica != NULL){
-        bool b = bib->desejaSalvar();
-        if(b==false){
-            cout << "Cancelado pelo usuario " << b << endl;
-            return;
-        }
-    } else {
-        delete minhaMusica; // ja deletedo no desejaSalvar();
-        minhaMusica = new MUSICA(bib->getBeep(), "Sem nome");
+
+    bool b = bib->desejaSalvar();
+    if(b==false){
+        cout << "Cancelado pelo usuario " << b << endl;
+        return;
     }
+
+    //delete minhaMusica; // ja deletedo no desejaSalvar();
+    minhaMusica = new MUSICA(bib->getBeep(), "Sem nome");
     bib->setMinhaMusica(minhaMusica);
 
     cout << "Abrindo: Entre com nome do arquivo: ";
@@ -468,7 +465,7 @@ int telaPlayer(BIBLIOTECA* bib){
         system("CLS");
         cout << "BEEP PLAYER" << "\t [q] para sair." << endl;
         if(musicas->vazia()){
-            cout << "A biblioteca está vazia." << endl;
+            cout << "A biblioteca esta vazia." << endl;
             getch();
             return COMANDO;
         } else {
@@ -504,7 +501,7 @@ int telaPlayer(BIBLIOTECA* bib){
                         getch();
                         break;
                     }
-                    cout << "Múica atual :" << bib->getMusica(ptrTocar->getInfo(), ok)->getNome() << endl;
+                    cout << "Muica atual :" << bib->getMusica(ptrTocar->getInfo(), ok)->getNome() << endl;
                     if(ok){
                         cout << "Tamanho     :" << bib->getMusica(ptrTocar->getInfo(), ok)->getTamanhoAtual() << endl;
                         if(ok){
