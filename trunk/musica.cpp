@@ -3,7 +3,7 @@
 MUSICA::MUSICA(BEEP* b) :
     LISTA<NOTA*>(){
     beep = b;
-    nome = "Nome padrao";
+    nome = "Sem nome";
 }
 
 MUSICA::MUSICA(BEEP* b, string s) :
