@@ -199,7 +199,7 @@ int telaComando(BIBLIOTECA* bib){
             cout << "Múica atual :" << bib->getMinhaMusica()->getNome() << endl;
         else
             cout << "Sem música aberta"<<endl;
-        cout << "\nEntre com comando" << endl <<" {sair; tocar; teste; salvarArquivo; nova; piano; sobre}" << endl << "{tocarbib; abrirbib; salvarbib; gravarbib; player}" << endl << ">> ";
+        cout << "\nEntre com comando" << endl <<" {sair; tocar; teste; salvarArquivo; nova; piano; sobre}" << endl << " {tocarbib; abrirbib; salvarbib; gravarbib; player}" << endl << ">> ";
         cin >> cmd;
         if(cmd == "sair" || cmd == "exit" || cmd == "fechar" || cmd == "q" || cmd == "quit")
             return SAIDA;
@@ -474,6 +474,8 @@ int telaPlayer(BIBLIOTECA* bib){
         cout << "BEEP PLAYER" << "\t [q] para sair." << endl;
         if(musicas->vazia()){
             cout << "A biblioteca está vazia." << endl;
+            getch();
+            return COMANDO;
         } else {
             ptrMus = musicas->getPtrHeader()->getDir();
             while(ptrMus != musicas->getPtrHeader()){
