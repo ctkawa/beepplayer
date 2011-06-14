@@ -572,7 +572,7 @@ void piano(BIBLIOTECA* bib){
     bib->setMinhaMusica(minhaMusica);
 
     system("CLS");
-    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"CTRL+L para limpar, CTRL+N para ver notas da musica" << endl << endl;
+    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"SHIFT+L para limpar, SHIFT+N para ver notas da musica" << endl << endl;
 
     char key = ' ';
     int i;
@@ -599,7 +599,7 @@ void piano(BIBLIOTECA* bib){
                     break;
                 case(76):   //L shift+l
                     system("CLS");
-                    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"CTRL+L para limpar, CTRL+N para ver notas da musica" << endl << endl;
+                    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"SHIFT+L para limpar, SHIFT+N para ver notas da musica" << endl << endl;
                     okn =false;
                     okt =false;
                     break;
@@ -763,6 +763,8 @@ void piano(BIBLIOTECA* bib){
 int telaTeste(){
     system("CLS");
     teste();
+    cout << "FIM DO TESTE"<<endl;
+    getch();
     return COMANDO;
 }
 
@@ -931,7 +933,9 @@ void teste(){
     BIBLIOTECA bib(banco, &beep);
     bib.tocar("Teste", okn);
 
+    delete banco;
     Sleep(1000);
+    return;
 }
 
 

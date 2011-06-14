@@ -338,7 +338,7 @@ void BIBLIOTECA::busca(string s, NO2<MUSICA*>* no, NO2<MUSICA*>* &resultado, boo
 }
 
 BIBLIOTECA::~BIBLIOTECA(){
-    delete beep;
+    //delete beep;
 }
 
 
