@@ -49,6 +49,7 @@ void BIBLIOTECA::recarregar(){
     mus->adicionar(banco->getNota(n), okn);
     insere(mus);
 
+
     // Abrindo arquivo biblioteca.bib
 
     char* bibfilec = new char[bibfile.length()+1];
@@ -214,8 +215,9 @@ bool BIBLIOTECA::abrir(string nomeP){
 
     //cout << "VERIFICANDO EXISTENCIA DO ARQUIVO: " << arqNome <<endl;
     int conf = GetFileAttributes(TEXT(arqNome));
+
     if(conf == -1 || conf == FILE_ATTRIBUTE_DIRECTORY){
-        cout << "Arquivo nao existe"<<endl;
+        cout << "Arquivo quase nao existe " << arqNome <<endl;
         return false;
     }
 
@@ -268,8 +270,11 @@ bool BIBLIOTECA::abrir(string nomeP){
     //minhaMusica->tocar();
 
     delete arqNome;
-
     return true;
+}
+
+bool BIBLIOTECA::nova(){
+
 }
 
 bool BIBLIOTECA::desejaSalvar(){
