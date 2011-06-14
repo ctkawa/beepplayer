@@ -3,7 +3,6 @@
 BIBLIOTECA::BIBLIOTECA(BANCODENOTAS* ba, BEEP* be) :
     ARVORE<MUSICA*>(){
 
-    minhaMusica = NULL;
     banco = ba;
     beep = be;
     bibdir = "bib/";
@@ -54,7 +53,6 @@ void BIBLIOTECA::recarregar(){
     }
 
     delete bibfilec;
-
 }
 
 void BIBLIOTECA::moveMinhaMusicaPBib(){
@@ -99,7 +97,7 @@ MUSICA* BIBLIOTECA::getMusica(string s, bool &ok){
 }
 
 string BIBLIOTECA::normalizaNome(string s){
-    for(unsigned int i=0; i<s.length(); i++){
+    for(int i=0; i<s.length(); i++){
         if(s[i] == ' ')
             s[i] = '_';
     }
@@ -199,16 +197,15 @@ bool BIBLIOTECA::abrir(string nomeP){
         return false;
     }
 
-    //
     string entrada;
     //cout << "VERIFICANDO OVERWRITE"<<endl;
     if(minhaMusica != NULL){
-        bool b = desejaSalvar();
-        if(b==false){
-            cout << "Cancelado pelo usuario " << b << endl;
-            return false;
-        }
-
+//        bool b = desejaSalvar();
+//        if(b==false){
+//            cout << "Cancelado pelo usuario " << b << endl;
+//            return false;
+//        }
+        delete minhaMusica;
         minhaMusica = new MUSICA(beep);
     } else {
         minhaMusica = new MUSICA(beep);
@@ -292,7 +289,7 @@ void BIBLIOTECA::getMusicasR(NO2<MUSICA*>* no, LISTA<string>* musicas){
     }
 }
 
-void BIBLIOTECA::busca(string s, NO2<MUSICA*>* no, NO2<MUSICA*>* &resultado, bool& encontrado){
+void BIBLIOTECA::busca(string s, NO2<MUSICA*>* no, NO2<MUSICA*>* &resultado, bool& encontrado){// encontrado deve ser false na 1a chamada
     if(no == NULL || encontrado){
         return;
     } else {
@@ -300,7 +297,7 @@ void BIBLIOTECA::busca(string s, NO2<MUSICA*>* no, NO2<MUSICA*>* &resultado, boo
             resultado = no;
             encontrado = true;
             return;
-        } else if(no->getInfo()->getNome() < s){
+        } else if(no->getInfo()->getNome() > s){
             busca(s, no->getEsq(), resultado, encontrado);
                                                                         if(!encontrado){
                                                                             busca(s, no->getDir(), resultado, encontrado);
