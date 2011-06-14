@@ -74,6 +74,119 @@ int telaSaida(){
 /////////////////////////////////////////////////
 
 int telaComando(BIBLIOTECA* bib){
+    bool sair = false;
+    string cmd = "";
+    int escolha = 0;
+    int escolhaMin = 0;
+    int escolhaMax = 9;
+    char c;
+    bool ok;
+
+    do{
+        system("CLS");
+        if(bib->getMinhaMusica() != NULL)
+            cout << "Musica atual: " << bib->getMinhaMusica()->getNome() << endl;
+        else
+            cout << "Nenhuma musica aberta" << endl;
+        cout << endl;
+
+        if(escolha == 0) cout << ">> ";
+        else cout << "   ";
+        cout << "Player" << endl;
+
+        if(escolha == 1) cout << ">> ";
+        else cout << "   ";
+        cout << "Piano" << endl;
+
+        cout << endl;
+
+        if(escolha == 2) cout << ">> ";
+        else cout << "   ";
+        cout << "Tocar musica atual" << endl;
+
+        if(escolha == 3) cout << ">> ";
+        else cout << "   ";
+        cout << "Nova musica vazia" << endl;
+
+        if(escolha == 4) cout << ">> ";
+        else cout << "   ";
+        cout << "Abrir arquivo de musica" << endl;
+
+        if(escolha == 5) cout << ">> ";
+        else cout << "   ";
+        cout << "Salvar musica atual" << endl;
+
+        if(escolha == 6) cout << ">> ";
+        else cout << "   ";
+        cout << "Gravar nova musica" << endl;
+
+
+        cout << endl;
+
+        if(escolha == 7) cout << ">> ";
+        else cout << "   ";
+        cout << "Teste" << endl;
+
+        if(escolha == 8) cout << ">> ";
+        else cout << "   ";
+        cout << "Sobre" << endl;
+
+        if(escolha == 9) cout << ">> ";
+        else cout << "   ";
+        cout << "Sair" << endl;
+
+        switch(c = getch()){
+            case 'P':
+                escolha++;
+                if(escolha>escolhaMax) escolha = escolhaMax;
+                break;
+            case 'H':
+                escolha--;
+                if(escolha<escolhaMin) escolha = escolhaMin;
+                break;
+            case 13:
+                switch(escolha){
+                    case 0: return PLAYER;
+                    case 1: return PIANO;
+                    //case 2: tocarBib(bib); break;
+                    case 2: // tocar
+                        system("CLS");
+                        if(bib->getMinhaMusica() == NULL){
+                            cout << "Nao ha uma musica atual. ";
+                        } else {
+                            cout << "Musica atual : " << bib->getMinhaMusica()->getNome() << endl;
+                            cout << "Tamanho      : " << bib->getMinhaMusica()->getTamanhoAtual() << " notas"<< endl;
+                            bib->getMinhaMusica()->tocar();
+                            cout << endl << "Fim da musica. ";
+                            getche();
+                        }
+
+                        cout << "Aperte alguma tecla para continuar... ";
+                        break;
+                    case 3: // nova
+                        nova(*bib->getMinhaMusica(), ok);
+                        if(!ok){
+                            cout << "!\tErro ao criar nova musica" << endl;
+                            Sleep(1000);
+                        }
+                        break;
+                    case 4: abrirBib(bib); break;
+                    case 5: salvarBib(bib); break;
+                    case 6: gravarBib(bib); break;
+                    case 7: return TESTE;
+                    case 8: return SOBRE;
+                    case 9: return SAIDA;
+                }
+        }
+    }while(!sair);
+
+    return COMANDO;
+
+
+
+
+/*
+
     system("CLS");
     BEEP* beep = bib->getBeep();
     //MUSICA minhaMusica(beep, "Minha música");
@@ -151,7 +264,12 @@ int telaComando(BIBLIOTECA* bib){
             //return COMANDO;
         }
     }
+
+    */
+
     return COMANDO;
+
+
 }
 
 void tocarBib(BIBLIOTECA* bib){
