@@ -31,9 +31,6 @@ public:
     NO2<T> *getPtrHeader(){return &header;}
     bool estaNaLista(const NO2<T>*);
     void printAll();
-
-//    elemento info(no2&, bool&);   // A final, o que era isso?
-
 };
 
 template<class T>
@@ -123,7 +120,7 @@ void LISTA<T>::retirar(NO2<T> *noRetir, bool &ok){
 template<class T>
 void LISTA<T>::retirar(T& ele, bool& ok){
     ok = false;
-    if (estaNaLista(ele)){  // talvez nao tenha sentido fazer isso, vai percorrer 2x
+    if (estaNaLista(ele)){
         NO2<T> *ptr;
         ptr = header.getDir();
         while(ptr != &header){
@@ -158,6 +155,7 @@ bool LISTA<T>::insereADireita(T ele, NO2<T> &no){   // inserir no com ELEMENTO n
     }
     return false;
 }
+
 template<class T>
 bool LISTA<T>::insereAEsquerda(T ele, NO2<T> &no){
     if(estaNaLista(&no)){
@@ -182,7 +180,7 @@ bool LISTA<T>::estaNaLista(const NO2<T> *no){ // verifica se o no apontado esta 
     NO2<T> *ptr;
     ptr = &header;
     do{
-        if(ptr==no){        //poderia verificar se no.esq aponta para anterior, etc...
+        if(ptr==no){
             return true;
         }
         ptr = ptr->getDir();

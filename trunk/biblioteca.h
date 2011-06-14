@@ -37,7 +37,7 @@ public:
     MUSICA* getMusica(string, bool&);
     bool salvar();
     bool abrir(string);
-    bool novaMusica();
+    void novaMusica();
     bool desejaSalvar();
     void moveMinhaMusicaPBib();
     void getMusicas(LISTA<string>*);

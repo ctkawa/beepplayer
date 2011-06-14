@@ -17,19 +17,15 @@ private:
     float tempo;
     void criaNomes();
 public:
-    // para compatibilidade
-    //NOTA();
-    //void setBancoDeNotas(BANCODENOTAS*);
-
     NOTA(BANCODENOTAS*);
     NOTA(BANCODENOTAS*, string);
     NOTA(BANCODENOTAS*, float);
     NOTA(BANCODENOTAS*, string, float);
     NOTA(BANCODENOTAS*, NOTA&);
     string getNome();
-    void setNome(string, bool&);        // receive & set tinbre, com validacao
+    void setNome(string, bool&);        // receive & set timbre, com validacao
     float getTempo();
-    void setTempo(float, bool&);        // receive & set Time
+    void setTempo(float, bool&);        // receive & set time
     void setNota(string, float, bool&, bool&);
     void setNota(string, bool&);
     void setNota(float, bool&);

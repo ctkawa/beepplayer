@@ -114,7 +114,6 @@ NOTA* BANCODENOTAS::getNota(NOTA n){
 }
 
 int BANCODENOTAS::getPosicaoNota(NOTA n){
-    bool ok = false;
     int resultado = 0;
 
     while(n.getNome() != nomes[resultado].nome)

@@ -16,9 +16,11 @@ private:
     void copiaR(NO2<T> * const &arv);
     bool estaNaArvoreR(T, NO2<T>*);
     bool insereR(T &, NO2<T> *&);
-    T removerR(NO2<T> *&, NO2<T> *, bool &);
+    T removerR(NO2<T> *, NO2<T> *, bool &);
     void imprimeAllR(NO2<T>*);
     NO2<T>* maior(NO2<T> *);
+protected:
+    void destruir(NO2<T>*);
 public:
     ARVORE();
     ARVORE(ARVORE &);
@@ -61,8 +63,21 @@ void ARVORE<T>::copiaR(NO2<T> * const &arv){
 
 template<class T>
 ARVORE<T>::~ARVORE(){
-    // deletar dodo alocado ate raiz=nulo
+    destruir(raiz);
 }
+
+
+template<class T>
+void ARVORE<T>::destruir(NO2<T>* no){
+    if(no == NULL)
+        return;
+    else {
+        destruir(no->getEsq());
+        destruir(no->getDir());
+        delete no;
+    }
+}
+
 
 template<class T>
 T* ARVORE<T>::getElemento(){
@@ -169,8 +184,10 @@ T ARVORE<T>::remover(NO2<T> *no, bool &ok){
     return removerR(raiz, no, ok);
 }
 template<class T>
-T ARVORE<T>::removerR(NO2<T> *&arvore, NO2<T> *no, bool &ok){
-	T ele;
+T ARVORE<T>::removerR(NO2<T> *arvore, NO2<T> *no, bool &ok){
+    cout << "ops" << endl;
+
+	T ele = NULL;
     if(arvore==NULL){
         ok = false;
     } else {

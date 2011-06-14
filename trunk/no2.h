@@ -23,7 +23,6 @@ class NO2{
 
 template <class T>
 NO2<T>::NO2(){
-    //info = NULL;
     dir = NULL;
     esq = NULL;
 }
@@ -69,4 +68,6 @@ template <class T>
 void NO2<T>::setEsq(NO2<T>* no){
 	esq = no;
 }
+
 #endif // NO2_H
+
