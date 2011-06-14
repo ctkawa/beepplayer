@@ -430,6 +430,11 @@ void piano(BIBLIOTECA* bib){
         if(b==false){
             cout << "Cancelado pelo usuario " << b << endl;
             return;
+        } else {
+            if(bib->getMinhaMusica()!=NULL){
+                cout << "somethig wrong..." << endl;
+            }
+            minhaMusica = new MUSICA(bib->getBeep(), "Sem nome");
         }
     } else {
         delete minhaMusica;

@@ -24,6 +24,7 @@ private:
     LISTA<string> bibfiles;
     string normalizaNome(string);
     void getMusicasR(NO2<MUSICA*>*, LISTA<string>*);
+    bool estaNaBibliotecaR(string, NO2<MUSICA*>*);
 public:
     BIBLIOTECA(BANCODENOTAS*, BEEP*);
     BANCODENOTAS* getBanco();
@@ -43,6 +44,7 @@ public:
     ~BIBLIOTECA();
     void imprimeAll();
     void imprimeAllR(NO2<MUSICA*> *no);
+    bool estaNaBiblioteca(string);
 };
 
 
