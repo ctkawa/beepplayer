@@ -18,14 +18,12 @@
 using namespace std;
 
 // Prototipos
-void tocarBib(BIBLIOTECA*);
+void tocar(BIBLIOTECA*);
 void salvar(string, MUSICA &);
-void salvarBib(BIBLIOTECA*);
+void salvar(BIBLIOTECA*);
 void nova(MUSICA &mus, bool &ok);
-//void abrir(BIBLIOTECA*);
-void abrirBib(BIBLIOTECA*);
-//void gravar(MUSICA &, BIBLIOTECA*);
-void gravarBib(BIBLIOTECA*);
+void abrir(BIBLIOTECA*);
+void gravar(BIBLIOTECA*);
 void piano(BIBLIOTECA*);
 void teste();
 
@@ -34,14 +32,15 @@ void teste();
 /////////////////////////////////////////////////
 
 int telaEntrada(){
+
     system("CLS");
     cout << "\tUniversidade Federal de Sao Carlos" << endl;
     cout << "\tDepartamento de Computacao" << endl;
     cout << "\tBacharelado em Ciencias da Computacao" << endl;
     cout << "\tTrabalho de Estruturas de Dados" << endl;
-    cout << "\n\n\n\n\n\n";
+    cout << "\n\n\n\n\n";
     cout << "\t\tBeep Player" << endl;
-    cout << "\n\n\n";
+    cout << "\n\n\n\n\n";
     cout << "Cleber Takahito Kawamorita" << endl;
     cout << "Felipe Augusto de Salles Pupo" << endl;
     cout << "Joao C. S. de Oliveira" << endl;
@@ -80,7 +79,6 @@ int telaComando(BIBLIOTECA* bib){
     int escolhaMin = 0;
     int escolhaMax = 9;
     char c;
-    bool ok;
 
     do{
         system("CLS");
@@ -152,11 +150,11 @@ int telaComando(BIBLIOTECA* bib){
                 switch(escolha){
                     case 0: return PLAYER;
                     case 1: return PIANO;
-                    case 2: tocarBib(bib); break;
+                    case 2: tocar(bib); break;
                     case 3: bib->novaMusica(); break;
-                    case 4: abrirBib(bib); break;
-                    case 5: salvarBib(bib); break;
-                    case 6: gravarBib(bib); break;
+                    case 4: abrir(bib); break;
+                    case 5: salvar(bib); break;
+                    case 6: gravar(bib); break;
                     case 7: return TESTE;
                     case 8: return SOBRE;
                     case 9: return SAIDA;
@@ -168,7 +166,7 @@ int telaComando(BIBLIOTECA* bib){
 
 }
 
-void tocarBib(BIBLIOTECA* bib){
+void tocar(BIBLIOTECA* bib){
     system("CLS");
     MUSICA* minhaMusica = bib->getMinhaMusica();
     if(minhaMusica == NULL)
@@ -185,7 +183,7 @@ void tocarBib(BIBLIOTECA* bib){
 
 }
 
-void salvarBib(BIBLIOTECA* bib){
+void salvar(BIBLIOTECA* bib){
     if(bib->getMinhaMusica()->getTamanhoAtual()==0){
         cout << "Musica sem nota" << endl;
         getch();
@@ -199,30 +197,7 @@ void salvarBib(BIBLIOTECA* bib){
     bib->salvar();
 }
 
-void nova(MUSICA &mus, bool &ok){
-    ok=true;
-    while((mus.getTamanhoAtual()!=0) && (ok)){ // retirar todos os elementos
-        mus.retirar(mus.getPtrHeader()->getDir(), ok);
-    }
-    if(ok)
-        mus.setNome("Sem Nome");
-}
-
-void salvar(string nomeP, MUSICA &mus){
-    char* arqNome = new char[nomeP.length()+1];
-    strcpy( arqNome, nomeP.c_str() );
-
-    ofstream ofs(arqNome);
-    NO2<NOTA*> *noPtr;
-    noPtr = mus.getPtrHeader()->getDir();
-    while(noPtr!=mus.getPtrHeader()){
-        ofs << noPtr->getInfo()->getNome() << "," << noPtr->getInfo()->getTempo() << endl;
-        noPtr = noPtr->getDir();
-    }
-    delete arqNome;
-}
-
-void abrirBib(BIBLIOTECA* bib){
+void abrir(BIBLIOTECA* bib){
     string nomeP;
     MUSICA* minhaMusica = bib->getMinhaMusica();
 
@@ -232,7 +207,6 @@ void abrirBib(BIBLIOTECA* bib){
         return;
     }
 
-    //delete minhaMusica; // ja deletedo no desejaSalvar();
     minhaMusica = new MUSICA(bib->getBeep(), "Sem nome");
     bib->setMinhaMusica(minhaMusica);
 
@@ -245,52 +219,9 @@ void abrirBib(BIBLIOTECA* bib){
         cout << endl << "Abortado" << endl << "Aperte alguma tecla para continuar ...";
         getche();
     }
-
-
 }
 
-//void abrir(BIBLIOTECA* bib){
-//    system("CLS");
-//    string nomeP;
-//
-//    if(bib->getMinhaMusica()->getTamanhoAtual()!=0)
-//        cout << "Música atual será descartada. (Digite nome inválido para cancelar)" << endl;
-//
-//    cout << "Entre com nome do arquivo: ";
-//    cin >> nomeP;
-//
-//    char* arqNome = new char[nomeP.length()+1];
-//    strcpy( arqNome, nomeP.c_str() );
-//
-//    int conf = GetFileAttributes(TEXT(arqNome));
-//    if(conf == -1 || conf == FILE_ATTRIBUTE_DIRECTORY){
-//        cout << "Arquivo nao existe"<<endl;
-//        return;
-//    }
-//
-//	ifstream ifs(arqNome);
-//	string str,strTempo;
-//	float tempo;
-//    bool okn, okt;
-//
-//	NOTA minhaNota(bib->getBanco());
-//	MUSICA minhaMusica(bib->getBeep(), nomeP);
-//	ifs >> str;
-//    while(!ifs.eof()){
-//        cout << str << endl;
-//        strTempo = str.substr(str.find(',')+1);
-//        tempo = ::atof(strTempo.c_str());
-//        minhaNota.setNota(str.substr(0,str.find(',')),tempo,okn,okt);
-//        minhaMusica.insereAEsquerda(&minhaNota,*minhaMusica.getPtrHeader());
-//        ifs >> str;
-//    }
-//    minhaMusica.tocar();
-//
-//    delete arqNome;
-//}
-
-
-void gravarBib(BIBLIOTECA* bib){
+void gravar(BIBLIOTECA* bib){
     BANCODENOTAS* banco = bib->getBanco();
     MUSICA* minhaMusica = bib->getMinhaMusica();
 
@@ -310,31 +241,8 @@ void gravarBib(BIBLIOTECA* bib){
         cout << "nota: " << (okn?minhaNota.getNome():"erro") << ", tempo: " << (okt?strTempo:"erro") << (okn&&okt?" gravado.":" => falha.") << endl;
         cin >> cmd;
     }
-    //minhaMusica.tocar();
+
 }
-
-//void gravar(MUSICA &minhaMusica, BIBLIOTECA* bib){
-//    BANCODENOTAS* banco = bib->getBanco();
-//
-//    system("CLS");
-//    cout << "Gravacao" << endl << "entre com nota e tempo separado com virgula (1do,1; 0re,0.25 ...) uma nota por linha." << endl << "fim para sair"<< endl << endl;
-//    NOTA minhaNota(banco);
-//	bool okn, okt;
-//	float tempo;
-//    string cmd="",strTempo, strNota;
-//    cin >> cmd;
-//    while(!(cmd=="fim"||cmd=="end")){
-//        strTempo = cmd.substr(cmd.find(',')+1);
-//        tempo = ::atof(strTempo.c_str());
-//        minhaNota.setNota(cmd.substr(0,cmd.find(',')),tempo,okn,okt);
-//        if (okn&&okt)
-//            minhaMusica.insereAEsquerda(banco->getNota(minhaNota),*minhaMusica.getPtrHeader());
-//        cout << "nota: " << (okn?minhaNota.getNome():"erro") << ", tempo: " << (okt?strTempo:"erro") << (okn&&okt?" gravado.":" => falha.") << endl;
-//        cin >> cmd;
-//    }
-//    //minhaMusica.tocar();
-//}
-
 
 
 /////////////////////////////////////////////////
@@ -351,7 +259,7 @@ int telaPlayer(BIBLIOTECA* bib){
     bool ok;
 
     musicas->esvaziar();
-    bib->getMusicas(musicas);   // obter lista de musicas da biblioteca
+    bib->getMusicas(musicas);   // obtem lista de musicas da biblioteca
 
 
     char c;
@@ -381,7 +289,6 @@ int telaPlayer(BIBLIOTECA* bib){
             }
         }
 
-        //if(kbhit){
            switch(c = getch()){
                 case 'P':
                     if(ptrTocar != NULL && ptrTocar->getDir() != musicas->getPtrHeader())
@@ -417,7 +324,7 @@ int telaPlayer(BIBLIOTECA* bib){
                     getch();
                     break;
             }
-        //}
+
         Sleep(1);
     }while(!sair);
 
@@ -471,7 +378,7 @@ void piano(BIBLIOTECA* bib){
         if (kbhit()){
             key = getch();
             i =key;
-            //cout << key << " " << (int)key << endl; // sai com codigo da tecla apertada
+
             switch(key){
                 case(78):   //N shift+N
                     cout << " - - - - - - - - - - - - -" << endl;
@@ -505,7 +412,7 @@ void piano(BIBLIOTECA* bib){
                         cout << "Erro ao retirar!" << endl;
                     okt = false;
                     break;
-                case(32):   //espco
+                case(32):   //espaço
                     minhaNota.setNota("pausa",0.5,okn,okt);
                     break;
                 case(13):   //enter
@@ -641,7 +548,6 @@ void piano(BIBLIOTECA* bib){
                 cout << minhaNota.getNome() << endl;
                 for(i=0; i<banco->getPosicaoNota(minhaNota); i++) cout << "   ";
                 cout << minhaNota.getTempo()<< endl;
-                //cout << " \t"  << minhaNota.getNome() << ", " << minhaNota.getTempo();
             } else if(key!=13&&key!=27&&key!=8&&key!=76&&key!=78)
                 cout << "Nao reconhecido";
             cout << endl;
@@ -825,7 +731,6 @@ void teste(){
     minhaMus.tocar();
 
     Sleep(500);
-
 
     cout << "Teste de BIBLIOTECA" << endl;
 

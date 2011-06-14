@@ -10,9 +10,7 @@
     MUSICA é LISTA de NO de NOTA
 **/
 
-//class MUSICA : public LISTA<NO1<NOTA> >{  //  MUSICA eh lista de NO com info NOTA
-
-class MUSICA : public LISTA<NOTA*>{      // MUSICA eh lista de notas
+class MUSICA : public LISTA<NOTA*>{      // MUSICA eh lista de NOTA
 private:
     string nome;
     BEEP * beep;
@@ -26,8 +24,6 @@ public:
     void tocar(bool print); //imprimir notas tocadas
 
     bool operator==(MUSICA const &dir);
-//    bool operator<(MUSICA const &dir);
-//    bool operator>(MUSICA const &dir);
 };
 
 #endif

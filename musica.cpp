@@ -17,22 +17,14 @@ string MUSICA::getNome(){
 }
 
 void MUSICA::setNome(string s){
-    //cout<< "F";
-    nome = "";
-    //cout<< "L";
     nome = s;
-    //cout<< "A";
 }
 
 void MUSICA::tocar(){
     NO2<NOTA*>* ptr;
-    //NOTA* n;
     ptr = getPtrHeader()->getDir();
-    //cout << getPtrHeader() << " <-HEADER" << endl;
+
     while(ptr != getPtrHeader()){
-        //n = ptr->getInfo();
-        //      cout << n->getNome() << " " << n->getTempo() << "<- NOTA* DA MUSICA" << endl;
-        //      cout << ptr->getDir() << " " << "<- Proxima nota" << endl;
         beep->tocar(ptr->getInfo());
         ptr = ptr->getDir();
     }
@@ -49,12 +41,4 @@ void MUSICA::tocar(bool print){
 
 bool MUSICA::operator==(MUSICA const &dir){
     return (nome==dir.nome);
-};/*
-bool MUSICA::operator<(MUSICA const &dir){
-    cout << nome << "<" << dir.nome << endl;
-    return (nome<dir.nome);
 };
-bool MUSICA::operator>(MUSICA const &dir){
-    cout << nome << ">" << dir.nome << endl;
-    return (nome>dir.nome);
-};*/
