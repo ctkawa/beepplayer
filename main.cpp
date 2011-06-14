@@ -152,13 +152,6 @@ int telaComando(BIBLIOTECA* bib){
                     case 1: return PIANO;
                     case 2: tocarBib(bib); break;
                     case 3: bib->novaMusica(); break;
-/*                    case 3: // nova
-                        nova(*bib->getMinhaMusica(), ok);
-                        if(!ok){
-                            cout << "!\tErro ao criar nova musica" << endl;
-                            Sleep(1000);
-                        }
-                        break; */
                     case 4: abrirBib(bib); break;
                     case 5: salvarBib(bib); break;
                     case 6: gravarBib(bib); break;
@@ -170,94 +163,6 @@ int telaComando(BIBLIOTECA* bib){
     } while(!sair);
 
     return COMANDO;
-
-
-
-
-/*
-
-    system("CLS");
-    BEEP* beep = bib->getBeep();
-    //MUSICA minhaMusica(beep, "Minha música");
-    bool sair = false;
-    string cmd = "";
-
-    while(!sair){
-        system("CLS");
-        if(bib->getMinhaMusica()!=NULL)
-            cout << "Múica atual :" << bib->getMinhaMusica()->getNome() << endl;
-        else
-            cout << "Sem música aberta"<<endl;
-        cout << "\nEntre com comando" << endl <<" {sair; tocar; teste; salvarArquivo; nova; piano; sobre}" << endl << " {tocarbib; abrirbib; salvarbib; gravarbib; player}" << endl << ">> ";
-        cin >> cmd;
-        if(cmd == "sair" || cmd == "exit" || cmd == "fechar" || cmd == "q" || cmd == "quit")
-            return SAIDA;
-        else if(cmd == "tocar"){
-            bool ok;
-            system("CLS");
-            cout << "Múica atual :" << bib->getMinhaMusica()->getNome() << endl;
-            cout << "Tamanho     :" << bib->getMinhaMusica()->getTamanhoAtual() << endl;
-            bib->getMinhaMusica()->tocar();
-            cout << "Fim da música. Aperte alguma tela para continuar ...";
-            getche();
-            //return COMANDO;
-        } else if(cmd == "tocarbib"){
-            tocarBib(bib);
-        } else if(cmd == "teste" || cmd == "test"){
-            return TESTE;
-        } else if(cmd == "salvarArquivo"){
-                string nomeP;
-                cout << "Salvar em arquivo" << endl;
-                cout << "Salvando: entre com nome do arquivo: ";
-                cin >> nomeP;
-                bib->getMinhaMusica()->setNome(nomeP);
-                salvar(nomeP, *(bib->getMinhaMusica()));
-            Sleep(500);
-            //return COMANDO;
-        } else if(cmd == "salvarbib"){
-            salvarBib(bib);
-            return COMANDO;
-
-//        } else if(cmd == "abrir" || cmd == "open"){
-//            abrir(bib);
-//            Sleep(500);
-//            //return COMANDO;
-
-        } else if(cmd == "nova" || cmd == "new"){
-            bool ok;
-            nova(*bib->getMinhaMusica(), ok);
-            if(!ok){
-                cout << "!\tErro ao criar nova musica" << endl;
-                Sleep(1000);
-            }
-        } else if(cmd == "abrirbib"){
-            abrirBib(bib);
-            Sleep(500);
-
-//        } else if(cmd == "gravar"){
-//            gravar(*bib->getMinhaMusica(), bib);
-//            Sleep(500);
-            //return COMANDO;
-
-        } else if(cmd == "gravarbib"){
-            gravarBib(bib);
-        } else if(cmd == "piano"){
-            return PIANO;
-        } else if(cmd == "sobre"){
-            return SOBRE;
-        } else if(cmd == "player"){
-            return PLAYER;
-        } else {
-            cout << "Comando desconhecido." << endl;
-            Sleep(500);
-            //return COMANDO;
-        }
-    }
-
-    */
-
-    return COMANDO;
-
 
 }
 
@@ -460,11 +365,16 @@ int telaPlayer(BIBLIOTECA* bib){
             getch();
             return COMANDO;
         } else {
+            cout << "\n\n\n";
             ptrMus = musicas->getPtrHeader()->getDir();
             while(ptrMus != musicas->getPtrHeader()){
-                if(ptrMus == ptrTocar) cout << ">> ";
-                else cout << "   ";
-                cout << ptrMus->getInfo() << endl;
+                if(ptrMus == ptrTocar) cout << "\t((( ";
+                else cout << "\t    ";
+
+                cout << ptrMus->getInfo();
+
+                if(ptrMus == ptrTocar) cout << " )))";
+                cout << endl;
                 ptrMus = ptrMus->getDir();
             }
         }
@@ -492,9 +402,9 @@ int telaPlayer(BIBLIOTECA* bib){
                         getch();
                         break;
                     }
-                    cout << "Muica atual :" << bib->getMusica(ptrTocar->getInfo(), ok)->getNome() << endl;
+                    cout << endl << endl << "\tMusica atual :" << bib->getMusica(ptrTocar->getInfo(), ok)->getNome() << endl;
                     if(ok){
-                        cout << "Tamanho     :" << bib->getMusica(ptrTocar->getInfo(), ok)->getTamanhoAtual() << endl;
+                        cout << "\tTamanho     :" << bib->getMusica(ptrTocar->getInfo(), ok)->getTamanhoAtual() << endl << endl;
                         if(ok){
                             bib->tocar(ptrTocar->getInfo(), ok);
                             if(!ok)
