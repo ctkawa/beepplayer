@@ -546,7 +546,7 @@ void piano(BIBLIOTECA* bib){
     bib->setMinhaMusica(minhaMusica);
 
     system("CLS");
-    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"SHIFT+L para limpar, SHIFT+N para ver notas da musica" << endl << endl;
+    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"SHIFT+L para limpar a tela, SHIFT+N para ver notas da musica" << endl << endl;
 
     char key = ' ';
     int i;
@@ -573,7 +573,7 @@ void piano(BIBLIOTECA* bib){
                     break;
                 case(76):   //L shift+l
                     system("CLS");
-                    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"SHIFT+L para limpar, SHIFT+N para ver notas da musica" << endl << endl;
+                    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"SHIFT+L para limpar a tela, SHIFT+N para ver notas da musica" << endl << endl;
                     okn =false;
                     okt =false;
                     break;
