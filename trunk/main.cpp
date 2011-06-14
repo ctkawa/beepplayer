@@ -86,7 +86,7 @@ int telaComando(BIBLIOTECA* bib){
             cout << "Múica atual :" << bib->getMinhaMusica()->getNome() << endl;
         else
             cout << "Sem música aberta"<<endl;
-        cout << "\nEntre com comando" << endl <<" {sair; tocar; teste; abrir; salvar; nova; piano; sobre}" << endl << "{tocarbib; abrirbib; salvarbib; gravarbib; player}" << endl << ">> ";
+        cout << "\nEntre com comando" << endl <<" {sair; tocar; teste; salvarArquivo; nova; piano; sobre}" << endl << "{tocarbib; abrirbib; salvarbib; gravarbib; player}" << endl << ">> ";
         cin >> cmd;
         if(cmd == "sair" || cmd == "exit" || cmd == "fechar" || cmd == "q" || cmd == "quit")
             return SAIDA;
@@ -103,7 +103,7 @@ int telaComando(BIBLIOTECA* bib){
             tocarBib(bib);
         } else if(cmd == "teste" || cmd == "test"){
             return TESTE;
-        } else if(cmd == "salvar" || cmd == "save"){
+        } else if(cmd == "salvarArquivo"){
                 string nomeP;
                 cout << "Salvar em arquivo" << endl;
                 cout << "Salvando: entre com nome do arquivo: ";
