@@ -120,7 +120,6 @@ int telaComando(BIBLIOTECA* bib){
         else cout << "   ";
         cout << "Gravar nova musica" << endl;
 
-
         cout << endl;
 
         if(escolha == 7) cout << ">> ";
@@ -151,21 +150,7 @@ int telaComando(BIBLIOTECA* bib){
                 switch(escolha){
                     case 0: return PLAYER;
                     case 1: return PIANO;
-                    //case 2: tocarBib(bib); break;
-                    case 2: // tocar
-                        system("CLS");
-                        if(bib->getMinhaMusica() == NULL){
-                            cout << "Nao ha uma musica atual. ";
-                        } else {
-                            cout << "Musica atual : " << bib->getMinhaMusica()->getNome() << endl;
-                            cout << "Tamanho      : " << bib->getMinhaMusica()->getTamanhoAtual() << " notas"<< endl;
-                            bib->getMinhaMusica()->tocar();
-                            cout << endl << "Fim da musica. ";
-                            getche();
-                        }
-
-                        cout << "Aperte alguma tecla para continuar... ";
-                        break;
+                    case 2: tocarBib(bib); break;
                     case 3: // nova
                         nova(*bib->getMinhaMusica(), ok);
                         if(!ok){
@@ -181,7 +166,7 @@ int telaComando(BIBLIOTECA* bib){
                     case 9: return SAIDA;
                 }
         }
-    }while(!sair);
+    } while(!sair);
 
     return COMANDO;
 
@@ -276,9 +261,20 @@ int telaComando(BIBLIOTECA* bib){
 }
 
 void tocarBib(BIBLIOTECA* bib){
+    system("CLS");
     MUSICA* minhaMusica = bib->getMinhaMusica();
-    if(minhaMusica != NULL)
+    if(minhaMusica == NULL)
+        cout << "Nao ha uma musica atual. ";
+    else{
+        cout << "Musica atual : " << minhaMusica->getNome() << endl;
+        cout << "Tamanho      : " << minhaMusica->getTamanhoAtual() << " notas" << endl;
         minhaMusica->tocar();
+        cout << endl << "Fim da musica. ";
+    }
+
+    cout << "Aperte alguma tecla pra continuar... ";
+    getche();
+
 }
 
 void salvarBib(BIBLIOTECA* bib){
@@ -577,9 +573,8 @@ void piano(BIBLIOTECA* bib){
 
     system("CLS");
     cout << "Piano" << endl << "[Esc] para sair" << endl << endl;
-    bool ok;
 
-    char key;
+    char key = ' ';
     int i;
     bool okn, okt;
     NOTA minhaNota(banco);

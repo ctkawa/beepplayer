@@ -28,6 +28,27 @@ void BIBLIOTECA::setMinhaMusica(MUSICA* mus){
 }
 
 void BIBLIOTECA::recarregar(){
+
+    // musica usada no teste
+    MUSICA* mus = new MUSICA(beep,"Teste");
+    NOTA n(banco);
+    bool okn;
+    n.setNota("0do", okn);
+    mus->adicionar(banco->getNota(n), okn);
+    n.setNota("0mi", okn);
+    mus->adicionar(banco->getNota(n), okn);
+    n.setNota("0sol", okn);
+    mus->adicionar(banco->getNota(n), okn);
+    n.setNota("1do", okn);
+    mus->adicionar(banco->getNota(n), okn);
+    n.setNota("0sol", okn);
+    mus->adicionar(banco->getNota(n), okn);
+    n.setNota("0mi", okn);
+    mus->adicionar(banco->getNota(n), okn);
+    n.setNota("0do", okn);
+    mus->adicionar(banco->getNota(n), okn);
+    insere(mus);
+
     // Abrindo arquivo biblioteca.bib
 
     char* bibfilec = new char[bibfile.length()+1];
@@ -98,7 +119,7 @@ MUSICA* BIBLIOTECA::getMusica(string s, bool &ok){
 }
 
 string BIBLIOTECA::normalizaNome(string s){
-    for(int i=0; i<s.length(); i++){
+    for(unsigned int i=0; i<s.length(); i++){
         if(s[i] == ' ')
             s[i] = '_';
     }
