@@ -572,27 +572,45 @@ void piano(BIBLIOTECA* bib){
     bib->setMinhaMusica(minhaMusica);
 
     system("CLS");
-    cout << "Piano" << endl << "[Esc] para sair" << endl << endl;
+    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"CTRL+L para limpar, CTRL+N para ver notas da musica" << endl << endl;
 
     char key = ' ';
     int i;
     bool okn, okt;
     NOTA minhaNota(banco);
+    NO2<NOTA*> *ptrN2;
     do{
+        okn =false;
+        okt =false;
         if (kbhit()){
             key = getch();
             i =key;
-            cout << key << " " << (int)key;
+            //cout << key << " " << (int)key << endl; // sai com codigo da tecla apertada
             switch(key){
-
-                case(8):
+                case(78):   //N shift+N
+                    cout << " - - - - - - - - - - - - -" << endl;
+                    ptrN2 = bib->getMinhaMusica()->getPtrHeader()->getDir();
+                    while(ptrN2 != bib->getMinhaMusica()->getPtrHeader()){
+                        cout << ptrN2->getInfo()->getNome() << ", " << ptrN2->getInfo()->getTempo()<<endl;
+                        ptrN2 = ptrN2->getDir();
+                    }
+                    cout << " - - - - - - - - - - - - -" << endl;
+                    okn =false;
+                    break;
+                case(76):   //L shift+l
+                    system("CLS");
+                    cout << "Piano" << endl << "[Esc] para sair, [bksp] para voltar,"<<endl<<"CTRL+L para limpar, CTRL+N para ver notas da musica" << endl << endl;
+                    okn =false;
+                    okt =false;
+                    break;
+                case(8):    //backspace
                     if(bib->getMinhaMusica()->getPtrHeader()->getDir() == bib->getMinhaMusica()->getPtrHeader()){
                         cout << "Musica vazia!" << endl;
                         break;
                     }
                     cout << "Removendo ultima nota. (";
                     cout << bib->getMinhaMusica()->getPtrHeader()->getEsq()->getInfo()->getNome();
-                    cout << "," << bib->getMinhaMusica()->getPtrHeader()->getEsq()->getInfo()->getTempo() << ")" << endl;
+                    cout << "," << bib->getMinhaMusica()->getPtrHeader()->getEsq()->getInfo()->getTempo() << ")";
                     bib->getMinhaMusica()->retirar(bib->getMinhaMusica()->getPtrHeader()->getEsq(), okn);
                     if(!okn)
                         cout << "Erro ao retirar!" << endl;
@@ -730,7 +748,7 @@ void piano(BIBLIOTECA* bib){
                    cout << "insert Error!" << endl;
                 bep->tocar(&minhaNota);
                 cout << " \t"  << minhaNota.getNome() << ", " << minhaNota.getTempo();
-            } else if(key!=13&&key!=27&&key!=8)
+            } else if(key!=13&&key!=27&&key!=8&&key!=76&&key!=78)
                 cout << "Nao reconhecido";
             cout << endl;
         }
