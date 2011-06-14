@@ -114,7 +114,7 @@ bool ARVORE<T>::insereR(T &e, NO2<T> *&no){  //referencia de ponteiro
         no = new NO2<T>;
         no->setInfo(e);
         return true;
-    } else if(no->getInfo() > e){   //insere a Esq
+    } else if(no->getInfo() > e){   //insere a Esq se elemento < este no
         NO2<T> *temp;
         temp = no->getEsq();
         bool result = insereR(e, temp);

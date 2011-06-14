@@ -75,6 +75,8 @@ int telaSaida(){
 
 int telaComando(BIBLIOTECA* bib){
     system("CLS");
+    BEEP* beep = bib->getBeep();
+    //MUSICA minhaMusica(beep, "Minha música");
     bool sair = false;
     string cmd = "";
 
@@ -89,6 +91,7 @@ int telaComando(BIBLIOTECA* bib){
         if(cmd == "sair" || cmd == "exit" || cmd == "fechar")
             return SAIDA;
         else if(cmd == "tocar"){
+            bool ok;
             system("CLS");
             cout << "Múica atual :" << bib->getMinhaMusica()->getNome() << endl;
             cout << "Tamanho     :" << bib->getMinhaMusica()->getTamanhoAtual() << endl;
@@ -196,7 +199,7 @@ void abrirBib(BIBLIOTECA* bib){
             return;
         }
     } else {
-        //delete minhaMusica; // ja deletedo no desejaSalvar();
+        delete minhaMusica; // ja deletedo no desejaSalvar();
         minhaMusica = new MUSICA(bib->getBeep(), "Sem nome");
     }
     bib->setMinhaMusica(minhaMusica);
@@ -207,7 +210,7 @@ void abrirBib(BIBLIOTECA* bib){
         cout << endl << "Música aberta:" << bib->getMinhaMusica()->getNome() << endl << "Aperte alguma tela para continuar ...";
         getche();
     } else {
-        cout << endl << "Abortado" << endl << "Aperte alguma tela para continuar ...";
+        cout << endl << "Abortado" << endl << "Aperte alguma tecla para continuar ...";
         getche();
     }
 
@@ -326,7 +329,7 @@ int telaPlayer(BIBLIOTECA* bib){
     bool ok;
 
     musicas->esvaziar();
-    bib->getMusicas(musicas);
+    bib->getMusicas(musicas);   // obter lista de musicas da biblioteca
 
 
     char c;
@@ -350,7 +353,7 @@ int telaPlayer(BIBLIOTECA* bib){
 
     do{
         system("CLS");
-        cout << "BEEP PLAYER" << endl;
+        cout << "BEEP PLAYER" << "\t [q] para sair." << endl;
         if(musicas->vazia()){
             cout << "A biblioteca está vazia." << endl;
         } else {
@@ -363,8 +366,7 @@ int telaPlayer(BIBLIOTECA* bib){
             }
         }
 
-//        if(kbhit){
-//            if(true){
+        if(kbhit){
            switch(c = getch()){
                 case 'P':
                     if(ptrTocar != NULL && ptrTocar->getDir() != musicas->getPtrHeader())
@@ -387,17 +389,19 @@ int telaPlayer(BIBLIOTECA* bib){
                         getch();
                         break;
                     }
-                    cout << "Musica atual :" << bib->getMusica(ptrTocar->getInfo(), ok)->getNome() << endl;
+                    cout << "Múica atual :" << bib->getMusica(ptrTocar->getInfo(), ok)->getNome() << endl;
                     if(ok){
                         cout << "Tamanho     :" << bib->getMusica(ptrTocar->getInfo(), ok)->getTamanhoAtual() << endl;
-                        if(ok)
+                        if(ok){
                             bib->tocar(ptrTocar->getInfo(), ok);
                             if(!ok)
                                 cout << "Erro ao tocar"<< endl;
-                        else cout << "Erro ao gettamanho"<< endl;
+                        }else cout << "Erro ao gettamanho"<< endl;
                     } else cout << "Erro ao getnome"<< endl;
+                    cout << endl <<  "Aperte alguma tecla para continuar ...";
+                    getch();
                     break;
-  //          }
+            }
         }
     }while(!sair);
 
@@ -436,7 +440,7 @@ void piano(BIBLIOTECA* bib){
     cout << "Piano" << endl << "[Esc] para sair" << endl << endl;
     bool ok;
 
-    char key = ' ';
+    char key;
     int i;
     bool okn, okt;
     NOTA minhaNota(banco);

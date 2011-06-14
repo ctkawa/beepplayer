@@ -25,6 +25,8 @@ public:
     void tocar();
 
     bool operator==(MUSICA const &dir);
+    bool operator<(MUSICA const &dir);
+    bool operator>(MUSICA const &dir);
 };
 
 #endif

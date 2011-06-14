@@ -41,3 +41,9 @@ void MUSICA::tocar(){
 bool MUSICA::operator==(MUSICA const &dir){
     return (nome==dir.nome);
 };
+bool MUSICA::operator<(MUSICA const &dir){
+    return (nome<dir.nome);
+};
+bool MUSICA::operator>(MUSICA const &dir){
+    return (nome>dir.nome);
+};
