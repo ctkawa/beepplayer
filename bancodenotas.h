@@ -38,6 +38,7 @@ public:
     float certificaTempo(float);
     NOTA* getNotaPadrao();
     NOTA* getNota(NOTA);
+    int getPosicaoNota(NOTA);
     int getFrequencia(NOTA*);
     int getTempo(NOTA*);
     bool maiorQue(NOTA*, NOTA*);

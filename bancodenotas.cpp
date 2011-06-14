@@ -113,6 +113,17 @@ NOTA* BANCODENOTAS::getNota(NOTA n){
     return resultado;
 }
 
+int BANCODENOTAS::getPosicaoNota(NOTA n){
+    bool ok = false;
+    int resultado = 0;
+
+    while(n.getNome() != nomes[resultado].nome)
+        resultado++;
+
+    return resultado;
+}
+
+
 void BANCODENOTAS::buscaNota(NO2<NOTA*>* no, NOTA* resultado, NOTA& n, bool& ok){
     if( no == NULL){
         ok = false;
